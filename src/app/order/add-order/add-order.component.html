@@ -1,0 +1,77 @@
+<div class="card">
+    <div class="card-header p-0">
+        <h3 class="ps-3 pt-3">Create New Order</h3>
+    </div>
+    <div class="card-body">
+
+        <mat-form-field class="w-25">
+            <mat-label>Order Name</mat-label>
+            <input matInput [(ngModel)]="orderName" >
+          </mat-form-field>
+
+          <form  [formGroup]="addItemForm" (ngSubmit)="onSubmitItemOrderForm()" >
+
+            <mat-form-field class="item-input">
+                <mat-label>Item Name</mat-label>
+                <input matInput formControlName="itemName"  type="text">
+              </mat-form-field>
+        
+            <mat-form-field class="item-input ms-4">
+                <mat-label>Quantity</mat-label>
+                <input matInput formControlName="quantity" >
+              </mat-form-field>
+          
+            <mat-form-field class="item-input ms-4">
+                <mat-label>Price</mat-label>
+                <input matInput formControlName="price" >
+              </mat-form-field>
+
+            <button mat-raised-button color="primary" class="ms-4"  *ngIf="!updateBtn">Add</button>
+            <button type="button" mat-raised-button color="primary" (click)="updateItem()" class="ms-4" *ngIf="updateBtn">Update</button>
+           
+
+<p *ngIf="errorMessage" class="text-danger pt-1 mb-5 pb-1" [innerHtml]="errorMessage"></p>
+
+</form>
+
+    
+          <table class="table mt-4 mb-5" *ngIf="itemList.length">
+            <thead>
+              <tr class="table-secondary">
+                <th scope="col">#</th>
+                <th scope="col">Item Name</th>
+                <th scope="col" class="text-center">Quantity</th>
+                <th scope="col" class="text-end">Price</th>
+                <th scope="col" class="text-center">Action</th>
+               
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let item of itemList,index as i">
+                <th scope="row">{{i+1}}</th>
+                <td >{{item.itemName}}</td>
+                <td class="text-center">{{item.price}}</td>
+                <td class="text-end">{{item.quantity}}</td>
+                <td  class="text-center">
+                  <button *ngIf="order" (click)="onClickEdit(item,i)" matTooltip="Delete Order" mat-icon-button color="primary">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                      <button (click)="onClickDelete(i)" matTooltip="Delete Order" mat-icon-button color="warn">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                </td>
+              </tr>
+         
+            </tbody>
+          </table>
+
+
+     
+    </div>
+    <div class="text-end card-footer">
+        <button class="me-2" mat-stroked-button color="basic" (click)="modalRf.hide()" >Cancel</button>
+        <button mat-stroked-button color="primary" (click)="saveOrder()" *ngIf="!order">Save</button>
+        <button mat-stroked-button color="warn" (click)="saveOrder()" *ngIf="order">Update Order</button>
+    </div>
+    
+  </div>

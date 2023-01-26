@@ -1,0 +1,12 @@
+<div >
+    <button mat-button  [matMenuTriggerFor]="beforeMenu"><mat-icon>more_vert</mat-icon></button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before" class="p-0 m-0">
+    <button mat-menu-item  (click)="onClickEdit()" matTooltip="Edit Order" class="me-3">
+      <mat-icon class="me-2">edit</mat-icon>Edit
+    </button>
+
+  <button mat-menu-item  (click)="onClickDelete()" matTooltip="Delete Order" >
+      <mat-icon class="me-2" >delete</mat-icon>Delete
+    </button>
+  </mat-menu>
+</div>
