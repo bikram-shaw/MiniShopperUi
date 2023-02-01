@@ -1,0 +1,60 @@
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Add Address</mat-card-title>
+      <mat-card-subtitle>
+        <p>Please enter the following details</p>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="example-form"  [formGroup]="addressForm" >
+   
+
+            <div class="mb-4 mt-4">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Address Line 1</mat-label>
+                    <input matInput formControlName="addressLine1"  type="text">
+                  </mat-form-field>
+            </div>
+       
+            <div class="form-outline mb-4">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Street</mat-label>
+                    <input matInput formControlName="street" type="text">
+                  </mat-form-field>
+            </div>
+       
+            <div class="form-outline mb-4">
+                <mat-form-field class="example-full-width">
+                    <mat-label>City</mat-label>
+                    <input matInput formControlName="city"  type="text">
+                  </mat-form-field>
+            </div>
+       
+            <div class="form-outline mb-4">
+                <mat-form-field class="example-full-width">
+                    <mat-label>State</mat-label>
+                    <input matInput formControlName="state"  type="text">
+                  </mat-form-field>
+            </div>
+
+            <div class="form-outline">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Pincode</mat-label>
+                    <input matInput formControlName="pincode" type="number">
+                  </mat-form-field>
+            </div>
+
+            <span *ngIf="errorMessage" class="text-danger pt-1 mb-5 pb-1" [innerHtml]="errorMessage"></span>
+       
+       
+          
+       
+          </form>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-button type="button" (click)="bsModalRef.hide()">Cancel</button>
+      <button mat-button type="submit" (click)="onSubmitAddressForm()"  [disabled]="!addressForm.valid">Add</button>
+    </mat-card-actions>
+  </mat-card>
+

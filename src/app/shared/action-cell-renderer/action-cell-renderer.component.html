@@ -1,7 +1,7 @@
-<div >
+<div *ngIf="params.value==='Order' && !isShopper">
     <button mat-button  [matMenuTriggerFor]="beforeMenu"><mat-icon>more_vert</mat-icon></button>
   <mat-menu #beforeMenu="matMenu" xPosition="before" class="p-0 m-0">
-    <button mat-menu-item  (click)="onClickEdit()" matTooltip="Edit Order" class="me-3">
+    <button mat-menu-item *ngIf="params.data.status!='Fulfilled' && params.data.status!='Rejected'"  (click)="onClickEdit(params.data)" matTooltip="Edit Order" class="me-3">
       <mat-icon class="me-2">edit</mat-icon>Edit
     </button>
 
@@ -10,3 +10,23 @@
     </button>
   </mat-menu>
 </div>
+
+<div *ngIf="params.value==='OrderStatus'">
+  <span class="chip" 
+  [ngClass]="{
+    'pending' : params.data.status=='Pending',
+    'fulfilled' : params.data.status=='Fulfilled',
+    'rejected' : params.data.status=='Rejected',
+    'SFR' : params.data.status=='Send for Review'
+ }"
+  >{{params.data.status}}</span>
+</div>
+
+
+<!--For Shopper-->
+<div *ngIf="params.value==='Order' && isShopper" >
+  <button mat-icon-button color="primary"(click)="viewOrder(params.data)" matTooltip="View Order">
+    <mat-icon >remove_red_eye</mat-icon>
+  </button>
+</div>
+

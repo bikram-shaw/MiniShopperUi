@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { AuthService } from 'src/app/common/auth.service';
+import { ViewOrderComponent } from 'src/app/order/view-order/view-order.component';
 
 @Component({
   selector: 'app-action-cell-renderer',
@@ -9,24 +12,45 @@ import { ICellRendererParams } from 'ag-grid-community';
 })
 export class ActionCellRendererComponent implements ICellRendererAngularComp {
   params: any;
+  isShopper: boolean=false;
+  bsModalRef: any;
 
-  constructor() { }
+  constructor(private authService:AuthService,private modalService: BsModalService,) { }
   agInit(params: ICellRendererParams<any, any>): void {
     this.params=params;
   }
   refresh(params: ICellRendererParams<any, any>): boolean {
-    throw new Error('Method not implemented.');
+    return false;
   }
 
   ngOnInit(): void {
+    this.isShopper=this.authService.isShopper();
   }
 
-  onClickEdit(){
-   this.params.editOrder(this.params.data);
+  onClickEdit(data:any){
+   this.params.editOrder(data);
   }
 
   onClickDelete(){
     this.params.deleteOrder(this.params.data);
+  }
+
+  viewOrder(data:any){
+    const config = {
+      backdrop: true,
+      ignoreBackdropClick: true
+    };
+    const val: any = {
+      order: data
+    };
+    this.bsModalRef = this.modalService.show(
+      ViewOrderComponent,
+      Object.assign(
+        config,
+        {},
+        { class: 'modal-dialog-centered modal-lg', initialState: val }
+      )
+    );
   }
 
 }

@@ -7,12 +7,14 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import {MatCardModule} from '@angular/material/card';
+import { AddAddressComponent } from './add-address/add-address.component';
 
 @NgModule({
   declarations: [
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    AddAddressComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { BrowserModule } from '@angular/platform-browser';
     MatButtonModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
     
   ]
 })

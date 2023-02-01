@@ -9,11 +9,16 @@ import { DeleteOrderComponent } from './delete-order/delete-order.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { AddOrderComponent } from './add-order/add-order.component';
+import { ViewOrderComponent } from './view-order/view-order.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     OrderComponent,
     DeleteOrderComponent,
-    AddOrderComponent
+    AddOrderComponent,
+    ViewOrderComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +29,9 @@ import { AddOrderComponent } from './add-order/add-order.component';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule
     
   ]
 })

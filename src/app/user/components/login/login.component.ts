@@ -52,9 +52,6 @@ export class LoginComponent implements OnInit {
     this.spinnerService.hide();
     localStorage.setItem('data', JSON.stringify(res.data));
     this.router.navigate(['dashboard']);
-   },error=>{
-    this.spinnerService.hide();
-    this.errorMessage=error.error.message;
    })
 
   }

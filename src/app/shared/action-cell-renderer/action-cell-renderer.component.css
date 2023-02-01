@@ -1,0 +1,12 @@
+.pending{
+    color: #E5B100 ;
+}
+.fulfilled{
+    color: #02B51B;
+}
+.rejected{
+    color: #D90101;
+}
+.SFR{
+    color: #3F51B5 ;
+}

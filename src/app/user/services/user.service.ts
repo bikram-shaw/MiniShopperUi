@@ -19,4 +19,12 @@ export class UserService {
     return this.http.post(this.baseUrl+"/Users/Login",login);
   }
 
+  addAddress(data:any):Observable<any>{
+   return this.http.post(this.baseUrl+"/UserAddress/AddAddress",data);
+  }
+
+  getAllAddress():Observable<any>{
+    return this.http.get(this.baseUrl+"/UserAddress/GetCustomerAddresses");
+  }
+
 }

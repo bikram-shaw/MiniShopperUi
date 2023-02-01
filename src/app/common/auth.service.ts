@@ -26,6 +26,16 @@ export class AuthService {
     }
   }
 
+  isShopper():boolean{
+    var data=JSON.parse(localStorage.getItem('data') as string);
+    if (data!=null && data.role==='Shopper') {
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
   logout(){
     localStorage.removeItem('data');
     this.router.navigate(['Login']);

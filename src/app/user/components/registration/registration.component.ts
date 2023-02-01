@@ -16,15 +16,15 @@ import { UserModule } from '../../user.module';
 })
 export class RegistrationComponent implements OnInit {
   signupForm: any;
-  errorMessage: string='';
+  errorMessage: string = '';
   constructor(
     private fb: FormBuilder,
-    private userService:UserService,
-    private spinnerService:SpinnerService,
-    private snackbar:SnackbarService,
-    private router:Router,
-    private authService:AuthService
-    ) { }
+    private userService: UserService,
+    private spinnerService: SpinnerService,
+    private snackbar: SnackbarService,
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.authService.isLoggedIn();
@@ -32,39 +32,40 @@ export class RegistrationComponent implements OnInit {
       firstName: [''],
       lastName: [''],
       emailId: [''],
-      password: [''] });
+      password: ['']
+    });
 
-      Validator.error.subscribe(error=>{
-        this.errorMessage=error;
-      })
+    Validator.error.subscribe(error => {
+      this.errorMessage = error;
+    })
   }
 
-  onSubmitSignupForm(){
-    var user=new User(
+  onSubmitSignupForm() {
+    var user = new User(
       this.signupForm.value.firstName,
       this.signupForm.value.lastName,
       this.signupForm.value.emailId.toLowerCase(),
-      this.signupForm.value.password); 
+      this.signupForm.value.password);
 
-      if(!Validator.ValidateName(user.firstName) || !Validator.ValidateName(user.lastName)){
-        return;
-      }
-      if(!Validator.ValidateEmail(user.emailId)){
-        return;
-      }
-      if(!Validator.ValidatePassword(user.password)){
-        return;
-      }
-      this.spinnerService.show();
-      this.userService.signup(user).subscribe(res=>{
-        this.spinnerService.hide();
-        this.snackbar.open(res.message,"close");
-        this.router.navigate(['Login']);
-        console.log(res);
-      },error=>{
-        this.spinnerService.hide();
-        this.errorMessage=error.error.message;
-      })
+    if (!Validator.ValidateName(user.firstName) || !Validator.ValidateName(user.lastName)) {
+      return;
+    }
+    if (!Validator.ValidateEmail(user.emailId)) {
+      return;
+    }
+    if (!Validator.ValidatePassword(user.password)) {
+      return;
+    }
+    this.spinnerService.show();
+    this.userService.signup(user).subscribe(res => {
+      this.spinnerService.hide();
+      this.snackbar.open(res.message, "close");
+      this.router.navigate(['Login']);
+      console.log(res);
+    }, error => {
+      this.spinnerService.hide();
+      this.errorMessage = error.error.message;
+    })
 
   }
 
